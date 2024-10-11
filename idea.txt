@@ -1,0 +1,2 @@
+User can make a reservation if fill in data
+Admin can check hotel stats
