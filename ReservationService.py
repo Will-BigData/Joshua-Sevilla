@@ -131,6 +131,9 @@ class ReservationService():
     
     def get_meal_plan_distribution(self):
         return self.__reservation_database.get_meal_plan_distribution()
+    
+    def get_room_type_distribution(self):
+        return self.__reservation_database.get_room_type_distribution()
 
 
 

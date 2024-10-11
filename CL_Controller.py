@@ -2,14 +2,11 @@ from Reservation import Reservation as rev
 from ReservationDataFrame import ReservationDataFrame as rd
 from ReservationService import ReservationService as rs
 from ReservationDatabase import reservation_database
+from controllerClass import controller
 
-class cl_Controller():
+class cl_Controller(controller):
     def __init__(self, data: rd, db: reservation_database):
-        self.__service = rs(data, db)
-
-    def start_up_database(self):
-        print('Starting DB')
-        self.__service.start_up()
+        super().__init__(data, db)
 
     def create_reservation(self):
         adults = input("Number of adults: ")
@@ -44,7 +41,7 @@ class cl_Controller():
 
         new_reservation = rev('0', adults, children, weekend_nights, weekday_nights, meal_plan, parking, room_type, year, month, date, average_price)
     
-        print(self.__service.create_reservation(new_reservation))
+        print(super().get_service().create_reservation(new_reservation))
 
     def update_reservation(self):
         id = input("Enter ID of reservation to update: ")
@@ -80,16 +77,16 @@ class cl_Controller():
 
         new_reservation = rev(id, adults, children, weekend_nights, weekday_nights, meal_plan, parking, room_type, year, month, date, average_price)
 
-        return self.__service.update_reservation(new_reservation)
+        return super().get_service().update_reservation(new_reservation)
+
 
     def delete_reservation(self):
         id = input("Enter ID of reservation to delete: ")
-        return self.__service.delete_reservation(id)
+        return super().get_service().delete_reservation(id)
 
-    def search_reservation(self):
+    def get_reservation(self):
         id = input("Enter ID of reservation: ")
-        return self.__service.get_reservation_info(id)
+        return super().get_service().get_reservation_info(id)
     
-    def meal_plan_distribution(self):
-        return self.__service.get_meal_plan_distribution()
+    
     

@@ -45,7 +45,7 @@ if interface_selection == 'c':
                 print(command_controller.delete_reservation())
             #Select
             case 's':
-                df = command_controller.search_reservation()
+                df = command_controller.get_reservation()
                 if df.empty:
                         print('Not found')
                 else:
@@ -53,9 +53,11 @@ if interface_selection == 'c':
                 
             #Exit
             case 'q':
-                query_selection = input('Input Query Selection. [M]eal Plan: ')
+                query_selection = input('Input Query Selection. [M]eal Plan, [R]oom type: ')
                 if query_selection == 'M':
                     print(command_controller.meal_plan_distribution())
+                elif query_selection == 'R':
+                    print(command_controller.get_room_type_distribution())
                 else:
                     print('Not an option. Try Again.')
 
@@ -104,6 +106,10 @@ elif interface_selection == 'a':
     @app.route('/reservation/query/meal-plans', methods=['GET'])
     def get_meal_plan_distribution_reservation():
         return controller.meal_plan_distribution().to_dict('records')
+    
+    @app.route('/reservation/query/room-type', methods=['GET'])
+    def get_room_type_distribution_reservation():
+        return controller.get_room_type_distribution().to_dict('records')
 
     app.run()
 else:

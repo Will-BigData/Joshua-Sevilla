@@ -119,3 +119,14 @@ class reservation_database():
                         group by type_of_meal_plan;"
 
         return pd.read_sql(query, con = cnx)
+    
+    def get_room_type_distribution(self):
+        cnx = self.get_connection()
+
+        query = "select room_type_reserved as 'Room Type', count(room_type_reserved) as 'Rooms Reserved', \
+                        avg(avg_price_per_room) as 'Average Price', \
+                        avg(no_of_week_nights + no_of_weekend_nights) as 'Average Nights'\
+                        from reservations group by room_type_reserved;"
+
+        return pd.read_sql(query, cnx) 
+
