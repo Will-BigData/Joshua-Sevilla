@@ -88,5 +88,9 @@ class cl_Controller(controller):
         id = input("Enter ID of reservation: ")
         return super().get_service().get_reservation_info(id)
     
+    def get_reservation_database(self):
+        id = input("Enter ID of reservation: ")
+        return super().get_service().get_reservation_database(id)
+    
     
     

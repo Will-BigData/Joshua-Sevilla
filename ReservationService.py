@@ -134,6 +134,12 @@ class ReservationService():
     
     def get_room_type_distribution(self):
         return self.__reservation_database.get_room_type_distribution()
+    
+    def get_all_reservation_details(self):
+        return self.__reservation_database.get_all_reservation_details()
+    
+    def get_reservation_database(self, id):
+        return self.__reservation_database.get_reservation_database(id)
 
 
 

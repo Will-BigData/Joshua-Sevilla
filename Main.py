@@ -53,11 +53,15 @@ if interface_selection == 'c':
                 
             #Exit
             case 'q':
-                query_selection = input('Input Query Selection. [M]eal Plan, [R]oom type: ')
+                query_selection = input('Input Query Selection. [M]eal Plan, [R]oom type, [S]ummary, [D]etails of Reservation: ')
                 if query_selection == 'M':
                     print(command_controller.meal_plan_distribution())
                 elif query_selection == 'R':
                     print(command_controller.get_room_type_distribution())
+                elif query_selection == 'S':
+                    print(command_controller.get_all_reservation_details())
+                elif query_selection == 'D':
+                    print(command_controller.get_reservation_database())
                 else:
                     print('Not an option. Try Again.')
 
@@ -110,6 +114,18 @@ elif interface_selection == 'a':
     @app.route('/reservation/query/room-type', methods=['GET'])
     def get_room_type_distribution_reservation():
         return controller.get_room_type_distribution().to_dict('records')
+
+    @app.route('/reservation/query/reservations', methods=['GET'])
+    def get_reservation_details():
+        return controller.get_all_reservation_details().to_dict('records')
+    
+    @app.route('/reservation/query/reservations/<id>', methods=['GET'])
+    def get_reservation_database(id: str):
+        reservation = controller.get_reservation_database(id)
+        if reservation.empty:
+            return 'Not found'
+        else:
+            return reservation.to_dict(orient='records')
 
     app.run()
 else:

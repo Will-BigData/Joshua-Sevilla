@@ -17,6 +17,9 @@ class controller(ABC):
     def get_room_type_distribution(self):
         return self.__service.get_room_type_distribution()
     
+    def get_all_reservation_details(self):
+        return self.__service.get_all_reservation_details()
+
     def get_service(self):
         return self.__service
     
@@ -34,4 +37,8 @@ class controller(ABC):
 
     @abstractmethod
     def get_reservation(self):
+        pass
+
+    @abstractmethod
+    def get_reservation_database(self):
         pass

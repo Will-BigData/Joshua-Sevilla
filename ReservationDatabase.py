@@ -129,4 +129,39 @@ class reservation_database():
                         from reservations group by room_type_reserved;"
 
         return pd.read_sql(query, cnx) 
+    
+    def get_all_reservation_details(self):
+        cnx = self.get_connection()
 
+        query = "select Booking_ID, (no_of_adults + no_of_children) as 'Number of Guests', \
+                        (no_of_weekend_nights + no_of_week_nights) as 'Number of Nights', \
+                        type_of_meal_plan as 'Meal Plan',  \
+                        CASE \
+                            WHEN required_car_parking_space = 0 THEN 'No' \
+                            WHEN required_car_parking_space = 1 THEN 'Yes' \
+                        END AS 'Parking', \
+                        room_type_reserved as 'Room Type', \
+                        concat(arrival_month, '-', arrival_date, '-', arrival_year) as 'Arrival Date', \
+                        avg_price_per_room as 'Price' \
+                        from reservations;"
+
+        return pd.read_sql(query, cnx) 
+    
+    def get_reservation_database(self, id):
+        cnx = self.get_connection()
+
+        query = "select Booking_ID, (no_of_adults + no_of_children) as 'Number of Guests', \
+                        (no_of_weekend_nights + no_of_week_nights) as 'Number of Nights', \
+                        type_of_meal_plan as 'Meal Plan',  \
+                        CASE \
+                            WHEN required_car_parking_space = 0 THEN 'No' \
+                            WHEN required_car_parking_space = 1 THEN 'Yes' \
+                        END AS 'Parking', \
+                        room_type_reserved as 'Room Type', \
+                        concat(arrival_month, '-', arrival_date, '-', arrival_year) as 'Arrival Date', \
+                        avg_price_per_room as 'Price' \
+                        from reservations where Booking_ID = %s;"
+        
+        params = (id,)
+
+        return pd.read_sql(query, cnx, params=params) 

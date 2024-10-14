@@ -32,4 +32,7 @@ class api_controller(controller):
     def delete_reservation(self, id: str):
         return super().get_service().delete_reservation(id)
     
+    def get_reservation_database(self, id: str):
+        return super().get_service().get_reservation_database(id)
+    
 
