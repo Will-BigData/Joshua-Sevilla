@@ -11,9 +11,14 @@ def main():
     interface_selection = input('Select interface to use. [a]pi or [c]ommand line: ')
     selection = ''
     data = rd()
-    database = reservation_database(user='root', password='MonkeysInc7!',
-                                host='127.0.0.1',
-                                database='project_0')
+
+    f = open("connections.txt", "r")
+    line = f.readline()
+    connections = line.split(',')
+
+    database = reservation_database(connections[0], connections[1],
+                                connections[2],
+                                connections[3])
 
     if interface_selection == 'c':
 

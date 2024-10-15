@@ -30,3 +30,5 @@ INN00028,1,0,0,2,Meal Plan 1,0,Room_Type 4,2018,5,19,110.0
 INN00029,1,0,1,2,Meal Plan 1,0,Room_Type 1,2017,11,6,37.33
 INN00030,2,2,3,4,Meal Plan 1,1,Room_Type 4,2020,12,4,50
 INN00031,2,2,2,2,Not Selected,0,Room_Type 1,2023,6,7,89
+INN00032,2,2,4,5,Meal Plan 1,1,Room_Type 4,2025,5,25,154
+INN00033,2,2,4,5,Meal Plan 2,1,Room_Type 1,2025,5,25,154
